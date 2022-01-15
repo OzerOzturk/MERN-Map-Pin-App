@@ -58,3 +58,33 @@ textarea::placeholder {
   background-color: tomato;
   cursor: pointer;
 }
+
+/* login logout register */
+
+.button {
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.logout {
+  background-color: tomato;
+}
+
+.login {
+  background-color: teal;
+  margin-right: 10px;
+}
+
+.register {
+  background-color: #800080;
+}
+
+.buttons,
+.logout {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
