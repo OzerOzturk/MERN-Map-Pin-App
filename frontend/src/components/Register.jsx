@@ -26,7 +26,7 @@ export default function Register({setShowRegister}) {
             setError(true)
         }
 
-    }
+    };
 
     return (
         <div className="registerContainer" >
@@ -37,8 +37,8 @@ export default function Register({setShowRegister}) {
                 <form onSubmit={handleSubmit} >
                     <input type="text" placeholder="username" ref={nameRef} />
                     <input type="email" placeholder="email" ref={emailRef} />
-                    <input type="password" placeholder="password"  ref={passwordRef}/>
-                    <button className="registerBtn" >Register</button>
+                    <input type="password" min="6" placeholder="password"  ref={passwordRef}/>
+                    <button type="submit" className="registerBtn" >Register</button>
                     {success &&(
                     <span className="success">You made it! You can login now.</span>
                     )}

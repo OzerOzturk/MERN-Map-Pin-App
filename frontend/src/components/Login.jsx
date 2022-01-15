@@ -3,7 +3,7 @@ import {Cancel, Room} from "@material-ui/icons"
 import { useState, useRef } from "react";
 import axios from "axios";
 
-export default function Login({setShowLogin}) {
+export default function Login({setShowLogin, myStorage,setCurrentUser}) {
     const [error, setError] = useState(false);
     const nameRef = useRef();
     const passwordRef = useRef();
@@ -16,7 +16,10 @@ export default function Login({setShowLogin}) {
         };
 
         try {
-            await axios.post("/users/login", user);
+            const res = await axios.post("/users/login", user);
+            myStorage.setItem("user",res.data.username)
+            setCurrentUser(res.data.username)
+            setShowLogin(false)
             setError(false)
         }catch(err) {
             setError(true)
@@ -32,13 +35,13 @@ export default function Login({setShowLogin}) {
             </div>
                 <form onSubmit={handleSubmit} >
                     <input type="text" placeholder="username" ref={nameRef} />
-                    <input type="password" placeholder="password"  ref={passwordRef}/>
-                    <button className="loginBtn" >Login</button>
+                    <input type="password" placeholder="password" min ="6"  ref={passwordRef}/>
+                    <button className="loginBtn" type="submit" >Login</button>
                     {error && 
                     <span className="failure">Upps something went wrong!</span> }
                 </form>
                 <Cancel className="loginCancel" onClick={()=> setShowLogin(false)} />
             
         </div>
-    )
+    );
 }
